@@ -105,8 +105,6 @@ function Handler (request, response) {
 	this.request  = request;
 	this.response = response;
 	this.pathname = pathname;
-	this.query    = urlParts.search;
-	this.hash     = urlParts.hash;
 	this.time     = process.hrtime();
 	this.status   = null;
 	this.type     = null;
@@ -142,7 +140,7 @@ Handler.prototype.respondJSON = function (data, headers) {
 
 Handler.prototype.respondRedirect = function (pathname, headers) {
 	this.respond(301, 'text/plain', '', {
-		'Location' : pathname + (this.query || '') + (this.hash || '')
+		'Location' : pathname
 	});
 };
 
